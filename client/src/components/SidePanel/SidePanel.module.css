@@ -1,0 +1,40 @@
+.sidePanel {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 9.5fr 1fr 1fr;
+}
+
+.search {
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.filters {
+  grid-row: 2;
+  display: flex;
+
+  justify-content: center;
+}
+
+.reset {
+  grid-row: 3;
+}
+
+.dropdown_button {
+  color: red;
+  opacity: 1;
+  transition: all 0.3s;
+  cursor: pointer;
+  width: 12.45em;
+  height: 1.95em;
+}
+
+.dropdown_button:hover {
+  color: violet;
+  background-color: transparent;
+  font-weight: 600;
+  opacity: 1;
+}
