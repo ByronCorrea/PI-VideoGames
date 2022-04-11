@@ -1,40 +1,41 @@
+const { getGenresFromApi } = require("../utils/index");
+const express = require("express");
+const router = express.Router();
+var { Genre } = require("../db.js");
+
 require("dotenv").config();
 const { API_KEY } = process.env;
-const axios = require("axios").default;
-const { Genre } = require("../models/Genre");
-const { Router } = require("express");
-const router = Router();
+const axios = require("axios");
 
-// GET TO '/genres'
-
-router.get("/", async (req, res) => {
+router.get(`/`, async function (req, res) {
   try {
-    const dbGenres = await Genre.findAll();
-    if (dbGenres.length) return res.json(dbGenres);
-
-    const response = await axios.get(
-      `https://api.rawg.io/api/genres?key=${API_KEY}`
-    );
-    const genres = response.data.results;
-
-    genres.forEach(async (genre) => {
-      await Genre.findOrCreate({
-        where: {
-          name: genre.name,
-        },
-      });
-    });
-
-    const genresOk = genres.map((game) => {
-      return {
-        id: game.id,
-        name: game.name,
-      };
-    });
-    res.json(genresOk);
-  } catch (err) {
-    return console.log(err);
+    return res.json(await getGenresFromApi());
+  } catch (e) {
+    return res.json(e);
   }
+});
+
+router.get(`/promise`, function (req, res) {
+  axios
+    .get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
+    .then(({ data }) => {
+      const genres = data.results.map(({ id, name }) => {
+        return {
+          id,
+          name,
+        };
+      });
+      genres.forEach(({ id, name }) => {
+        Genre.findOrCreate({
+          where: { id: id, name: name },
+        });
+      });
+
+      return res.json(genres);
+    })
+    .catch((error) => {
+      return res.json(error);
+    });
 });
 
 module.exports = router;

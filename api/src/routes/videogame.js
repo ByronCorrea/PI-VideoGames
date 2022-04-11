@@ -1,81 +1,31 @@
 require("dotenv").config();
-const axios = require("axios").default;
-const { API_KEY } = process.env;
-const { Videogame, Genre } = require("../db");
-const { Router } = require("express");
-const router = Router();
+const express = require("express");
+const router = express.Router();
+const { getDetailFromApi, getDetailFromDb, postGameToDb } = require("../utils");
 
-//GET TO /:idVideoGame
-
-router.get("/:idVideogame", async (req, res) => {
-  const { idVideogame } = req.params;
-
-  if (idVideogame.includes("-")) {
-    let dbVideogame = await Videogame.findOne({
-      where: {
-        id: idVideogame,
-      },
-      include: Genre,
-    });
-
-    dbVideogame = JSON.stringify(dbVideogame);
-    dbVideogame = JSON.parse(dbVideogame);
-
-    dbVideogame.genres = dbVideogame.genres.map((g) => g.name);
-    res.json(dbVideogame);
+router.get(`/:id`, async function (req, res) {
+  let { id } = req.params;
+  if (id.includes("db")) {
+    try {
+      return res.json(await getDetailFromDb(id));
+    } catch (e) {
+      return res.json(e);
+    }
   } else {
     try {
-      const response = await axios.get(
-        `https://api.rawg.io/api/games/${idVideogame}?key=${API_KEY}`
-      );
-      let {
-        id,
-        name,
-        background_image,
-        genres,
-        description,
-        released: releaseDate,
-        rating,
-        platforms,
-      } = response.data;
-      genres = genres.map((g) => g.name);
-      platforms = platforms.map((p) => p.platform.name);
-      return res.json({
-        id,
-        name,
-        background_image,
-        genres,
-        description,
-        releaseDate,
-        rating,
-        platforms,
-      });
-    } catch (err) {
-      return console.log(err);
+      return res.json(await getDetailFromApi(id));
+    } catch (e) {
+      return res.json(e);
     }
   }
 });
 
-//POST TO /videogame
-
-router.post("/", async (req, res) => {
-  let { name, description, releaseDate, rating, genres, platforms } = req.body;
-  platforms = platforms.join(" - ");
+router.post("/", async function (req, res) {
   try {
-    const createdGame = await Videogame.findOrCreate({
-      where: {
-        name,
-        description,
-        releaseDate,
-        rating,
-        platforms,
-      },
-    });
-    await createdGame[0].setGenres(genres);
-  } catch (err) {
-    console.log(err);
+    return res.json(await postGameToDb(req.body));
+  } catch (e) {
+    return res.json(e);
   }
-  res.send({ msg: `The game ${name} has been created successfully` });
 });
 
 module.exports = router;

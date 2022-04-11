@@ -1,85 +1,33 @@
 require("dotenv").config();
-const axios = require("axios").default;
-const { API_KEY } = process.env;
-const { Videogame, Genre } = require("../db");
-const { Router } = require("express");
-const router = Router();
+const express = require("express");
+const router = express.Router();
+const {
+  getGamesFromDb,
+  getGamesFromApi,
+  gamesFromApiQuery,
+  gamesFromDbQuery,
+  displayRequiredDataFromAllGames,
+} = require("../utils");
 
-//GET TO "/videogames"
-
-router.get("/", async (req, res) => {
-  let dbVideogames = await Videogame.findAll({
-    include: Genre,
-  });
-
-  dbVideogames = JSON.stringify(dbVideogames);
-  dbVideogames = JSON.parse(dbVideogames);
-
-  dbVideogames = dbVideogames.reduce(
-    (acc, el) =>
-      acc.concat({
-        ...el,
-        genres: el.genres.map((g) => g.name),
-      }),
-    []
-  );
-
-  // GET /videogames?name="..."
-
-  if (req.query.name) {
-    try {
-      let response = await axios.get(
-        `https://api.rawg.io/api/games?search=${req.query.name}&key=${API_KEY}`
-      );
-      if (!response.data.count)
-        return res.status(204).json(`No results found for "${req.query.name}"`);
-
-      const gamesOk = response.data.results.map((game) => {
-        return {
-          id: game.id,
-          name: game.name,
-          background_image: game.background_image,
-          rating: game.rating,
-          genres: game.genres.map((g) => g.name),
-        };
-      });
-
-      const dbFilteredGames = dbVideogames.filter((g) =>
-        g.name.toLowerCase().includes(req.query.name.toLowerCase())
-      );
-
-      const results = [...dbFilteredGames, ...gamesOk.splice(0, 15)];
-      return res.json(results);
-    } catch (err) {
-      return console.log(err);
+router.get("/", async function (req, res) {
+  try {
+    let { name } = req.query;
+    if (name) {
+      let resultsFromApi = await gamesFromApiQuery(name);
+      let resultsFromDb = await gamesFromDbQuery(name);
+      let results = [...resultsFromApi, ...resultsFromDb];
+      return results.length === 0
+        ? res.status(404).json({ msg: "no se encontraron resultados" })
+        : res.json(displayRequiredDataFromAllGames(results));
     }
-  } else {
-    try {
-      let pages = 0;
-      let results = [...dbVideogames];
-      let response = await axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}`
-      );
-      while (pages < 6) {
-        pages++;
-
-        const gamesREADY = response.data.results.map((game) => {
-          return {
-            id: game.id,
-            name: game.name,
-            background_image: game.background_image,
-            rating: game.rating,
-            genres: game.genres.map((g) => g.name),
-          };
-        });
-        results = [...results, ...gamesREADY];
-        response = await axios.get(response.data.next);
-      }
-      return res.json(results);
-    } catch (err) {
-      console.log(err);
-      return res.sendStatus(500);
-    }
+    const gamesFromApi = await getGamesFromApi();
+    const gamesFromDb = await getGamesFromDb();
+    return res.json(
+      displayRequiredDataFromAllGames([...gamesFromApi, ...gamesFromDb])
+    );
+  } catch (e) {
+    console.log(e);
+    return res.send("Error");
   }
 });
 
