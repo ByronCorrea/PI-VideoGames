@@ -7,22 +7,10 @@ function Nav() {
   useEffect(() => {
     const body = document.querySelector("body"),
       sidebar = body.querySelector("nav"),
-      toggle = body.querySelector(".toggle"),
-      modeSwitch = body.querySelector(".toggle-switch"),
-      modeText = body.querySelector(".mode-text");
+      toggle = body.querySelector(".toggle");
 
     toggle.addEventListener("click", () => {
       sidebar.classList.toggle("close");
-    });
-
-    modeSwitch.addEventListener("click", () => {
-      body.classList.toggle("dark");
-
-      if (body.classList.contains("dark")) {
-        modeText.innerText = "Light mode";
-      } else {
-        modeText.innerText = "Dark mode";
-      }
     });
   }, []);
 
@@ -47,17 +35,6 @@ function Nav() {
         <div className="menu-bar">
           <div className="menu">
             <ul className="menu-links">
-              <li className="mode bottom-content">
-                <div className="sun-moon">
-                  <i className="bx bx-moon icon moon"></i>
-                  <i className="bx bx-sun icon sun"></i>
-                </div>
-                <span className="mode-text text">Dark mode</span>
-
-                <div className="toggle-switch">
-                  <span className="switch"></span>
-                </div>
-              </li>
               <li className="nav-link">
                 <a href={"/home"}>
                   <i className="bx bx-home-alt icon"></i>
@@ -76,12 +53,6 @@ function Nav() {
                 <a href={"/about"}>
                   <i className="bx bx-user icon"></i>
                   <span className="text nav-text">About</span>
-                </a>
-              </li>
-              <li className="">
-                <a href="/">
-                  <i className="bx bx-log-out icon"></i>
-                  <span className="text nav-text">Logout</span>
                 </a>
               </li>
             </ul>
@@ -105,6 +76,12 @@ function Nav() {
                 >
                   <i className="bx bxl-github icon"></i>
                   <span className="text nav-text">Github</span>
+                </a>
+              </li>
+              <li className="logout">
+                <a href="/">
+                  <i className="bx bx-log-out icon"></i>
+                  <span className="text nav-text">Logout</span>
                 </a>
               </li>
             </div>

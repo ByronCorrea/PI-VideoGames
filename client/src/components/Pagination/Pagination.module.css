@@ -1,43 +1,28 @@
-/* .pages {
+.pages {
   display: flex;
   align-items: center;
-} */
-
-.button_select {
-  font-weight: 200;
-  text-shadow: 0 0 0.1em black;
-  border-radius: 0.1em;
-  padding: 0.1em 0.1em;
-  margin: 0.2em;
-  height: 2em;
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
-  text-justify: center;
-  text-align: center;
-  transition: all 0.3s;
-  cursor: pointer;
 }
 
 .button_select {
   text-shadow: 0 0 0.1em white;
-  border: solid 1px rgb(236 180 101 / 58%);
-  background-color: rgba(255, 255, 255, 0.034);
-  color: #ecb365;
+  border: none;
+  background-color: white;
+  color: black;
   min-width: 4em;
   width: auto;
+  border-radius: 2rem;
+  padding: 0.3rem;
+  margin-left: 0.3rem;
 }
 
 .button_select:hover {
-  background-color: transparent;
+  background-color: black;
   border: none;
-  animation-name: glow;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
+  color: white;
 }
 
-.active .button_select {
+/* .active .button_select {
   animation-name: whiteGlow;
   animation-duration: 2s;
   animation-iteration-count: infinite;
-}
+} */

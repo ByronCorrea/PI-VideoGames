@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Slider.module.css";
-// import asset from "../../assets/forms.module.css";
-import { IoCaretForwardOutline, IoCaretBackOutline } from "react-icons/io5";
-import img404 from "../../assets/404.png";
+import img404 from "../../assets/loading.gif";
 
 export default function Slider({ images }) {
   const [stateIndex, setStateIndex] = useState(0);
@@ -34,7 +32,7 @@ export default function Slider({ images }) {
           onClick={(e) => prevSlide(e)}
           disabled={stateIndex === 0 ? true : false}
         >
-          {<IoCaretBackOutline />}
+          <i className="bx bx-chevron-left"></i>
         </button>
       </div>
 
@@ -59,7 +57,7 @@ export default function Slider({ images }) {
           onClick={(e) => nextSlide(e)}
           disabled={stateIndex === images?.length - 1 ? true : false}
         >
-          {<IoCaretForwardOutline />}
+          <i className="bx bx-chevron-right"></i>
         </button>
       </div>
     </div>

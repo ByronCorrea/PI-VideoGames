@@ -4,7 +4,7 @@ import { searchByName } from "../../Actions/index";
 import styles from "./SearchBar.module.css";
 function SearchBar() {
   const [byName, setByName] = useState(true);
-  const [placeholder, setPlaceholder] = useState("Search videogame...");
+  const [placeholder, setPlaceholder] = useState("Search...");
 
   const dispatch = useDispatch();
 
@@ -40,7 +40,7 @@ function SearchBar() {
           autoComplete="off"
         />
         <button type="submit" className={styles.buttonSearch}>
-          <i class="bx bx-search"></i>
+          <i className="bx bx-search"></i>
         </button>
       </form>
       <button

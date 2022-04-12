@@ -5,16 +5,13 @@ import styles from "./Home.module.css";
 import Loader from "../Loader/Loader";
 import Page from "../Page/Page";
 import Pagination from "../Pagination/Pagination";
-// import { ResultsPerPage } from "../Filters/Filters";
 import { clearDetail, getGames } from "../../Actions";
-
-import img404 from "../../assets/404.png";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allVideogames = useSelector((state) => state.videogames);
 
-  const [results] = useState(15);
+  const [results] = useState(16);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -22,11 +19,6 @@ export default function Home() {
     !allVideogames.length && dispatch(getGames());
     setCurrentPage(1);
   }, [dispatch, results, allVideogames]);
-
-  // function handleResults(e) {
-  //   e.preventDefault();
-  //   setResults(e.target.value);
-  // }
 
   function handlePaginate(n) {
     setCurrentPage(n);
@@ -42,7 +34,6 @@ export default function Home() {
   ) : allVideogames === "Error" ? (
     <div>
       <h3>Nothing found</h3>
-      <img className={styles.img} src={img404} alt="" />
     </div>
   ) : (
     <div className={styles.global}>
@@ -55,13 +46,6 @@ export default function Home() {
             handlePaginate={handlePaginate}
           />
         </div>
-        {/* <span className={styles.filters}>
-          <ResultsPerPage
-            allVideogames={allVideogames.length}
-            results={results}
-            handleResults={handleResults}
-          />
-        </span> */}
 
         <div className={styles.pagination}>
           <Pagination

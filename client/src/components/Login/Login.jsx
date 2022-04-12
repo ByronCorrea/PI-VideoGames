@@ -17,12 +17,12 @@ function Login() {
         <div className={styles.face}></div>
       </div>
 
-      {/* <div className={styles.longfazers}>
+      <div className={styles.longfazers}>
         <span></span>
         <span></span>
         <span></span>
         <span></span>
-      </div> */}
+      </div>
 
       <div className={styles.outbutton}>
         <Link to="/home">

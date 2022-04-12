@@ -21,7 +21,6 @@ export default function Pagination({
             className={currentPage === number ? styles.active : undefined}
           >
             <button
-              style={{ minWidth: "2em" }}
               className={styles.button_select}
               onClick={() => handlePaginate(number)}
             >
