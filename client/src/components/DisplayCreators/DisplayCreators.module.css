@@ -12,20 +12,19 @@
 }
 
 .button_select:hover {
-  background-color: transparent;
+  background-color: white;
   border: none;
-  animation-name: glow;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
 }
 
 .button_select {
   text-shadow: 0 0 0.1em white;
-  border: solid 1px rgb(236 180 101 / 58%);
-  background-color: rgba(255, 255, 255, 0.034);
-  color: #ecb365;
+  /* border: solid 1px rgb(236 180 101 / 58%); */
+  border: none;
+  background-color: rgba(255, 255, 255, 0.648);
+  color: black;
   min-width: 4em;
   width: auto;
+  font-family: monospace;
 }
 
 .button_select {

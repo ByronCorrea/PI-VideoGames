@@ -1,7 +1,9 @@
 .sidePanel {
   height: 100%;
   display: grid;
-  grid-template-rows: 9.5fr 1fr 1fr;
+  grid-template-rows: 9.5fr 2fr 0.001fr;
+  position: relative;
+  z-index: 1;
 }
 
 .search {
@@ -10,12 +12,12 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  margin-top: -1rem;
 }
 
 .filters {
   grid-row: 2;
   display: flex;
-
   justify-content: center;
 }
 
@@ -24,17 +26,23 @@
 }
 
 .dropdown_button {
-  color: red;
+  font-size: 1rem;
+  color: white;
   opacity: 1;
   transition: all 0.3s;
   cursor: pointer;
   width: 12.45em;
   height: 1.95em;
+  font-family: monospace;
+  background-color: black;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 400;
 }
 
 .dropdown_button:hover {
-  color: violet;
-  background-color: transparent;
+  color: black;
+  background-color: white;
   font-weight: 600;
   opacity: 1;
 }
