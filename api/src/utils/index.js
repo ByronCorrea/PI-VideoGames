@@ -56,7 +56,7 @@ module.exports = {
     try {
       let games = [];
       let address = "";
-      while (games.length < 100) {
+      while (games.length < 200) {
         !games.length &&
           (address = `https://api.rawg.io/api/games?key=${API_KEY}`);
         let { data } = await axios.get(address);

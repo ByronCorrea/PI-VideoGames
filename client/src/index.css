@@ -29,7 +29,7 @@ body {
   min-height: 100vh;
   background-color: var(--body-color);
   background-image: url(./assets//videogame.jpg);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(8px);
 }
 
 /*-----------------------------*/
