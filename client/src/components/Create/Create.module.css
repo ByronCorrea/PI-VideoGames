@@ -1,3 +1,29 @@
+.global {
+  max-width: 800px;
+  max-height: 800px;
+  margin: auto;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  transition: 0.3s;
+  flex-direction: column;
+  border-radius: 10px;
+  top: 6rem;
+  box-shadow: 0 8px 32px rgba(43, 42, 42, 0.418);
+  transition: all 0.1s ease;
+  text-align: center;
+}
+
+.global:hover {
+  transform: translateY(1px);
+  box-shadow: 0px 3px 5px rgba(163, 170, 172, 0.568);
+  opacity: 1;
+}
+
 .form_container {
   display: grid;
   grid-template-rows: 5em 5em 5em 5em 5em 6em 6em 6em 6em;
