@@ -286,7 +286,7 @@ export default function Create() {
                 </div>
               </div>
               <span className={validate.g ? styles.validInput : undefined}>
-                {validate.g ? <i class="bx bx-check"></i> : ""}
+                {validate.g ? <i className="bx bx-check"></i> : ""}
               </span>
             </div>
             <div className={styles.displayCreators}>

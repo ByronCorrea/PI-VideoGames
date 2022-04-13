@@ -1,4 +1,4 @@
-const { getGenresFromApi } = require("../utils/index");
+const { getGenresFromApi } = require("../utils/");
 const express = require("express");
 const router = express.Router();
 var { Genre } = require("../db.js");

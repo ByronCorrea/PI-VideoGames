@@ -41,7 +41,6 @@ export function DropDown({
       dispatch(getGames());
     }
   }
-
   return (
     <div className={styles.dropdown}>
       <div className={styles.body}>

@@ -1,7 +1,11 @@
 require("dotenv").config();
 const express = require("express");
 const router = express.Router();
-const { getDetailFromApi, getDetailFromDb, postGameToDb } = require("../utils");
+const {
+  getDetailFromApi,
+  getDetailFromDb,
+  postGameToDb,
+} = require("../utils/");
 
 router.get(`/:id`, async function (req, res) {
   let { id } = req.params;

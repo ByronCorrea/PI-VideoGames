@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import dotenv from "dotenv";
 import axios from "axios";
-import store from "./Store/index";
+import store from "./store/index";
 import { BrowserRouter as Router } from "react-router-dom";
 
 dotenv.config();
