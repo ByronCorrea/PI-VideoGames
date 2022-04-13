@@ -88,39 +88,3 @@ export function DropDown({
     </div>
   );
 }
-
-// export function ResultsPerPage({ allVideogames, results, handleResults }) {
-//   return (
-//     <div className={styles.resultsSelector}>
-//       <div>{`showing ${
-//         allVideogames < results ? allVideogames : results
-//       } of ${allVideogames} results`}</div>
-//       <div className={styles.buttons}>
-//         <button
-//           style={{ minWidth: "2em" }}
-//           className={asset.button_select}
-//           value={15}
-//           onClick={(e) => handleResults(e)}
-//         >
-//           15
-//         </button>
-//         <button
-//           style={{ minWidth: "2em" }}
-//           className={asset.button_select}
-//           value={51}
-//           onClick={(e) => handleResults(e)}
-//         >
-//           51
-//         </button>
-//         <button
-//           style={{ minWidth: "2em" }}
-//           className={asset.button_select}
-//           value={allVideogames}
-//           onClick={(e) => handleResults(e)}
-//         >
-//           All
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }

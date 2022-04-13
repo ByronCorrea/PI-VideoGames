@@ -28,18 +28,8 @@
 body {
   min-height: 100vh;
   background-color: var(--body-color);
-  /* transition: var(--tran-05); */
   background-image: url(./assets//videogame.jpg);
   backdrop-filter: blur(2px);
-}
-
-body.dark {
-  --body-color: #18191a;
-  --sidebar-color: #242526;
-  --primary-color: #3a3b3c;
-  --primary-color-light: #3a3b3c;
-  --toggle-color: #fff;
-  --text-color: #ccc;
 }
 
 /*-----------------------------*/
