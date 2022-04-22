@@ -2,7 +2,6 @@ const { getGenresFromApi } = require("../utils/");
 const express = require("express");
 const router = express.Router();
 var { Genre } = require("../db.js");
-
 require("dotenv").config();
 const { API_KEY } = process.env;
 const axios = require("axios");

@@ -88,16 +88,12 @@ export default function Detail({ match }) {
 
       {!errors?.includes(name) && (
         <div className={styles.rating}>
-          <h4 style={{ color: "#ecb365" }}>
-            Rating: <i style={{ color: "yellow" }} className="bx bxs-star"></i>
-          </h4>
-          {rating}
+          <h4 style={{ color: "#ecb365" }}>⭐ {rating}</h4>
         </div>
       )}
       {!errors?.includes(name) && (
         <div className={styles.released}>
-          <h4 style={{ color: "#ecb365" }}>Released in: </h4>
-          {released}
+          <h4 style={{ color: "#ecb365" }}>📅 {released}</h4>
         </div>
       )}
       <div className={styles.description}>
