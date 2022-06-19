@@ -1,8 +1,10 @@
 import React from "react";
 import Perfil from "../../assets/Perfil1.png";
 import styles from "./About.module.css";
+import { TabTitle } from "../../components/TabTitle/TabTitle";
 
 function About() {
+  TabTitle("About");
   return (
     <div className={styles.card} data-state="#about">
       <div className={styles.cardHeader}>

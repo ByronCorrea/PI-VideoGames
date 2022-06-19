@@ -6,8 +6,11 @@ import Loader from "../Loader/Loader";
 import Page from "../Page/Page";
 import Pagination from "../Pagination/Pagination";
 import { clearDetail, getGames } from "../../Actions";
+import { TabTitle } from "../../components/TabTitle/TabTitle";
 
 export default function Home() {
+  TabTitle("Home");
+
   const dispatch = useDispatch();
   const allVideogames = useSelector((state) => state.videogames);
 
