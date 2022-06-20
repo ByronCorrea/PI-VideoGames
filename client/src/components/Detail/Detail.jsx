@@ -5,7 +5,7 @@ import Slider from "../Slider/Slider";
 
 import styles from "./Detail.module.css";
 import { searchById } from "../../Actions";
-import { TabTitle } from "../../components/TabTitle/TabTitle";
+import { TabTitle } from "../GeneralFunctions";
 
 export default function Detail({ match }) {
   TabTitle("Detail");

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postToDb, getGenres, clearGames } from "../../Actions";
 import styles from "./Create.module.css";
 import { DisplayCreators } from "../DisplayCreators/DisplayCreators";
-import { TabTitle } from "../../components/TabTitle/TabTitle";
+import { TabTitle } from "../GeneralFunctions";
 
 export default function Create() {
   TabTitle("Create");
